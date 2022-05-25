@@ -1,8 +1,9 @@
 import sqlite3
 
+
 class Db:
-    def __init__(self,database:str = 'test'):
-        self.con = sqlite3.connect(database) # database
+    def __init__(self, database: str = 'test'):
+        self.con = sqlite3.connect(database)  # database
 
     def create_database_if_not_exists(self):
         self.con.execute("CREATE TABLE [IF NOT EXISTS] [main].quotes (coin_to_gbp float NOT NULL,coin_to_doge_exchange_rate float NOT NULL,exchanged_doge_worth_in_gbp float NOT NULL,gbp_difference float NOT NULL) [ WITHOUT ROWID];")

@@ -1,19 +1,16 @@
-# This is a sample Python script.
+from arbitrage.database import Db
+from arbitrage.miner import Miner
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-import sqlite3
+miner = Miner()
+db = Db("miner.db")
 
-
-con = sqlite3.connect('test.db')
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+    currencies = miner.get_all_coins()
+    for coin in currencies():
+        doge = miner.convert_to_doge(coin)
+        coin_rate = miner.to_gbp(coin)
+        doge_worth = miner.doge_to_gbp_quote(doge)
+        difference = doge_worth - coin_rate
+        db.insert_quote(coin_rate, doge, doge_worth, difference)
 
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print(db.sort_by_gbp_difference())
