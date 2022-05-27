@@ -8,8 +8,8 @@ class AuthManager:
     def load_credentials(self):
         api_key = ''
         sec = ''
-        if os.path.exists(self.home + 'credentials.txt'):
-            with open(self.home + 'credentials.txt', 'r') as fo:
+        if os.path.exists(self.home + '\credentials.txt'):
+            with open(self.home + '\credentials.txt', 'r') as fo:
                 for line in fo:
                     line = line.strip()
                     if line.startswith('api '):
@@ -21,11 +21,17 @@ class AuthManager:
             return False
 
     def create_credentials(self):
-        if not os.path.exists(self.home + 'credentials.txt'):
-            api_key = input("api key: \n")
-            secret = input("api secret: \n")
-            with open(self.home + 'credentials.txt','w') as f:
+        if not os.path.exists(self.home + '\credentials.txt'):
+            api_key = input("api key: ")
+            secret = input("api secret: ")
+            with open(self.home + '\credentials.txt','w') as f:
                 f.write('api ' + api_key + "\n" + 'sec ' + secret )
+
+    def delete_credentials(self):
+        if os.path.exists(self.home + '\credentials.txt'):
+            os.remove(self.home + '\credentials.txt')
+
+
 
     def authenticate(self):
         credentials = self.load_credentials()

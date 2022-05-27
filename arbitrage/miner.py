@@ -6,7 +6,7 @@ from arbitrage.credentials import AuthManager
 
 class Miner:
     def __init__(self):
-        credentials = AuthManager.authenticate()
+        credentials = AuthManager().authenticate()
         self.client = Client(credentials["api"], credentials["secret"])
 
     def get_all_coins(self):
