@@ -4,6 +4,7 @@ if __name__ == '__main__':
 
     miner = Miner()
     db = Db("miner.db")
+    db.create_database_if_not_exists()
     db.truncate_table()
     currencies = miner.get_all_coins()
     for coin in currencies:
