@@ -3,7 +3,7 @@ from pathlib import Path
 
 class AuthManager:
     def __init__(self):
-        self.home = str(Path.self.home())
+        self.home = str(Path().home())
 
     def load_credentials(self):
         api_key = ''
@@ -21,7 +21,6 @@ class AuthManager:
             return False
 
     def create_credentials(self):
-        self.home = str(Path.self.home())
         if not os.path.exists(self.home + 'credentials.txt'):
             api_key = input("api key: \n")
             secret = input("api secret: \n")
