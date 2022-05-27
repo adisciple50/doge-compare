@@ -32,5 +32,6 @@ class AuthManager:
         credentials = self.load_credentials()
         if not credentials:
             self.create_credentials()
+            return self.load_credentials()
         else:
             return credentials
