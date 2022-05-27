@@ -11,7 +11,7 @@ class Db:
 
     # coin is the coin to convert to doge and
     def insert_quote(self,coin_to_gbp:float,coin_to_doge_exchange_rate:float,exchanged_doge_worth_in_gbp:float,gbp_difference:float):
-        self.con.execute("INSERT INTO quotes(coin_to_gbp,coin_to_doge_exchange_rate,exchanged_doge_worth_in_gbp,gbp_difference) VALUES(coin_to_gbp,coin_to_doge_exchange_rate,exchanged_doge_worth_in_gbp,gbp_difference")
+        self.con.execute("INSERT INTO quotes(coin_to_gbp,coin_to_doge_exchange_rate,exchanged_doge_worth_in_gbp,gbp_difference) VALUES(?,?,?,?)",(coin_to_gbp,coin_to_doge_exchange_rate,exchanged_doge_worth_in_gbp,gbp_difference))
         self.con.commit()
 
     def sort_by_gbp_difference(self):
