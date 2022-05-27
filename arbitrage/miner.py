@@ -1,11 +1,13 @@
 from coinbase import *
 import os
 from coinbase.wallet.client import Client
+from arbitrage.credentials import AuthManager
 
 
 class Miner:
     def __init__(self):
-        self.client = Client(os.environ['coinbase_api'], os.environ['coinbase_secret'])
+        credentials = AuthManager.authenticate()
+        self.client = Client(credentials["api"], credentials["secret"])
 
     def get_all_coins(self):
         return self.client.get_currencies()
